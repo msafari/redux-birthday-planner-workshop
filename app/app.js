@@ -9,11 +9,6 @@ import 'sanitize.css/sanitize.css';
 
 import App from 'containers/App';
 
-// Load the favicon
-/* eslint-disable import/no-webpack-loader-syntax */
-import '!file-loader?name=[name].[ext]!./images/favicon.ico';
-/* eslint-enable import/no-webpack-loader-syntax */
-
 import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
