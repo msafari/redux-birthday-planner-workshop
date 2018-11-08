@@ -9,7 +9,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import BirthdayPage from 'containers/BirthdayPage/Loadable';
+import BirthdayPage from 'containers/BirthdayPage';
 import Header from 'components/Header';
 import './style.scss';
 
