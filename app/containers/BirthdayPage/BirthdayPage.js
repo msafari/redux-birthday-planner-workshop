@@ -45,16 +45,11 @@ class BirthdayPage extends React.Component {
   render() {
     const {
       guests,
-      totalGuests,
-      confirm,
-      numConfirmed
+      confirm
     } = this.props
     return (
       <Box>
-        <GuestStats
-          totalGuests={totalGuests}
-          numConfirmed={numConfirmed}
-        />
+        <GuestStats />
         <Card my={3} px={3} py={4}>
           <Label htmlFor='guest-name' fontSize={2} mb={1}>
             New Guest:
@@ -106,9 +101,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  guests: state.global.guestList,
-  totalGuests: state.global.guestCount,
-  numConfirmed: state.global.numConfirmed
+  guests: state.global.guestList
 });
 
 export default connect(

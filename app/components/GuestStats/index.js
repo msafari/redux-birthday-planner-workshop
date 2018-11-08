@@ -7,6 +7,8 @@ import {
   Divider,
   Card
 } from 'pcln-design-system';
+import { connect } from 'react-redux';
+
 
 const GuestStats = ({
   totalGuests,
@@ -28,4 +30,9 @@ const GuestStats = ({
   </Card>
 );
 
-export default GuestStats;
+const mapStateToProps = (state) => ({
+  totalGuests: state.global.guestCount,
+  numConfirmed: state.global.numConfirmed
+});
+
+export default connect(mapStateToProps)(GuestStats);
