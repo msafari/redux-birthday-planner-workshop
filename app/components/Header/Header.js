@@ -3,7 +3,7 @@ import { Heading } from 'pcln-design-system';
 
 const Header = () => (
   <Heading my={4}>
-    Birthday Planner
+    Birthday Party Guest List
   </Heading>
 );
 

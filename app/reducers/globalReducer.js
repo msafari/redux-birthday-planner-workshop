@@ -2,23 +2,47 @@ import { handleActions } from 'redux-actions';
 
 const initialState = {
   guestCount: 2,
-  guestList: [
-    'Maedeh Safari',
-    'Surabhi Nigam'
-  ]
+  numConfirmed: 0,
+  guestList: {
+    'Maedeh Safari': {
+      confirmed: false,
+      declined: false
+    },
+    'Surabhi Nigam': {
+      confirmed: false,
+      declined: false
+    }
+  }
 };
 
 const globalReducer = handleActions({
-  INCREMENT: (state, action) => (
-    Object.assign({}, state, {
-      guestCount: state.guestCount + 1
+  INCREMENT: (prevState, action) => (
+    Object.assign({}, prevState, {
+      guestCount: prevState.guestCount + 1
     })
   ),
-  ADD_GUEST: (state, action) => (
-    Object.assign({}, state, {
-      guestList: state.guestList.concat(action.payload)
+  ADD_GUEST: (prevState, action) => {
+    prevState.guestList[action.payload] = {
+      confirmed: false,
+      declined: false
+    };
+
+    return Object.assign({}, prevState, {
+      guestList: prevState.guestList
     })
-  )
+  },
+  CONFIRM_GUEST: (prevState, action) => {
+    return Object.assign({}, prevState, {
+      numConfirmed: prevState.numConfirmed + 1,
+      guestList: {
+        ...prevState.guestList,
+        [action.payload]: {
+          confirmed: true,
+          declined: false
+        }
+      }
+    })
+  }
 }, initialState);
 
 export default globalReducer;

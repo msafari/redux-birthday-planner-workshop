@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Guest from 'components/Guest';
+import GuestStats from 'components/GuestStats';
+import GuestListHeader from 'components/GuestListHeader';
 import {
   Flex,
   Text,
@@ -9,9 +11,10 @@ import {
   Label,
   Input,
   Divider,
-  GreenButton
+  GreenButton,
+  Card
 } from 'pcln-design-system';
-import { addGuest, increment } from '../../actions'
+import { addGuest, increment, confirmGuest } from '../../actions'
 
 class BirthdayPage extends React.Component {
   constructor(props) {
@@ -42,15 +45,21 @@ class BirthdayPage extends React.Component {
   render() {
     const {
       guests,
-      numOfGuests
+      totalGuests,
+      confirm,
+      numConfirmed
     } = this.props
     return (
       <Box>
-        <Box my={3}>
+        <GuestStats
+          totalGuests={totalGuests}
+          numConfirmed={numConfirmed}
+        />
+        <Card my={3} px={3} py={4}>
           <Label htmlFor='guest-name' fontSize={2} mb={1}>
             New Guest:
           </Label>
-          <Flex justify='space-between'>
+          <Flex>
             <Input
               id='guest-name'
               onChange={this.updateCurrentGuestInput}
@@ -58,39 +67,33 @@ class BirthdayPage extends React.Component {
               defaultValue='Enter Guest Name'
             />
             <Box w={0.25}>
-              <GreenButton onClick={this.handleInputClick}>
+              <GreenButton fullWidth onClick={this.handleInputClick}>
                 Add Guest
               </GreenButton>
             </Box>
           </Flex>
-        </Box>
-        <Heading.h3>
-          Total Number of Guests: {numOfGuests}
-        </Heading.h3>
-        <Divider mt={4} />
-        <Flex>
-          <Box w={0.5}>
-            <Text bold>
-              Guest Number
-            </Text>
-          </Box>
-          <Box w={0.5}>
-            <Text bold>
-              Guest Name
-            </Text>
-          </Box>
-        </Flex>
-        <Divider mb={4} />
-        {
-          guests && guests.length > 0 &&
-          guests.map((name, index) => (
-            <Guest
-              key={`guest-${name}`}
-              name={name}
-              index={index}
-            />
-          ))
-        }
+        </Card>
+        <Card mt={4}>
+          <GuestListHeader />
+          {
+            guests &&
+            Object.keys(guests).map((name, index) => {
+              const green = guests[name].confirmed && 'lightGreen'
+              const red = guests[name].declined && 'lightRed'
+              return (
+                <Guest
+                  key={`guest-${name}-${green}-${red}`}
+                  name={name}
+                  alreadyDeclined={guests[name].declined}
+                  alreadyConfirmed={guests[name].confirmed}
+                  onConfirm={() => confirm(name)}
+                  bg={green || red}
+                  guestNumber={index + 1}
+                />
+              )
+            })
+          }
+        </Card>
       </Box>
     );
   }
@@ -98,12 +101,14 @@ class BirthdayPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addGuest: (name) => dispatch(addGuest(name)),
-  increment: () => dispatch(increment())
+  increment: () => dispatch(increment()),
+  confirm: (name) => dispatch(confirmGuest(name))
 });
 
 const mapStateToProps = (state) => ({
   guests: state.global.guestList,
-  numOfGuests: state.global.guestCount
+  totalGuests: state.global.guestCount,
+  numConfirmed: state.global.numConfirmed
 });
 
 export default connect(
