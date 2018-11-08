@@ -14,7 +14,7 @@ import {
   GreenButton,
   Card
 } from 'pcln-design-system';
-import { addGuest, increment, confirmGuest } from '../../actions'
+import { addGuest, increment, confirmGuest, declineGuest } from '../../actions'
 
 class BirthdayPage extends React.Component {
   constructor(props) {
@@ -45,7 +45,8 @@ class BirthdayPage extends React.Component {
   render() {
     const {
       guests,
-      confirm
+      confirm,
+      decline
     } = this.props
     return (
       <Box>
@@ -82,6 +83,7 @@ class BirthdayPage extends React.Component {
                   alreadyDeclined={guests[name].declined}
                   alreadyConfirmed={guests[name].confirmed}
                   onConfirm={() => confirm(name)}
+                  onDecline={() => decline(name)}
                   bg={green || red}
                   guestNumber={index + 1}
                 />
@@ -97,7 +99,8 @@ class BirthdayPage extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   addGuest: (name) => dispatch(addGuest(name)),
   increment: () => dispatch(increment()),
-  confirm: (name) => dispatch(confirmGuest(name))
+  confirm: (name) => dispatch(confirmGuest(name)),
+  decline: (name) => dispatch(declineGuest(name))
 });
 
 const mapStateToProps = (state) => ({

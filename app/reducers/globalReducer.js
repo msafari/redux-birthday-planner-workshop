@@ -41,6 +41,18 @@ const globalReducer = handleActions({
           declined: false
         }
       }
+    });
+  },
+  DECLINE_GUEST: (prevState, action) => {
+    return Object.assign({}, prevState, {
+      // bonus: reduce confirmed num if guest was already confirmed before
+      guestList: {
+        ...prevState.guestList,
+        [action.payload]: {
+          confirmed: false,
+          declined: true
+        }
+      }
     })
   }
 }, initialState);

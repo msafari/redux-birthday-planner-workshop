@@ -10,7 +10,7 @@ import {
 const Guest = ({
   name,
   guestNumber,
-  onRemove,
+  onDecline,
   onConfirm,
   bg,
   alreadyDeclined,
@@ -40,7 +40,7 @@ const Guest = ({
       <Box w={0.2} align='center'>
         <IconButton
           disabled={alreadyDeclined}
-          onClick={onRemove}
+          onClick={onDecline}
           name='close'
           color={alreadyDeclined ? 'gray' : 'red'}
           size={24}
