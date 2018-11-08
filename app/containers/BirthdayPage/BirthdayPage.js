@@ -64,7 +64,7 @@ class BirthdayPage extends React.Component {
               id='guest-name'
               onChange={this.updateCurrentGuestInput}
               name='guest-name'
-              defaultValue='Enter Guest Name'
+              placeholder='Enter guest name...'
             />
             <Box w={0.25}>
               <GreenButton fullWidth onClick={this.handleInputClick}>
