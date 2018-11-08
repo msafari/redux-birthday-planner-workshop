@@ -14,7 +14,7 @@ const Guest = ({
   <Flex my={4}>
     <Box w={0.5}>
       <Text>
-        #{index}
+        #{index + 1}
       </Text>
     </Box>
     <Box w={0.5}>

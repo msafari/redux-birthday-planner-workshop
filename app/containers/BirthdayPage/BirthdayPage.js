@@ -11,7 +11,7 @@ import {
   Divider,
   GreenButton
 } from 'pcln-design-system';
-import { addGuest, increment } from '../App/actions'
+import { addGuest, increment } from '../../actions'
 
 class BirthdayPage extends React.Component {
   constructor(props) {

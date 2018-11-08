@@ -1,16 +1,16 @@
 {
-  "name": "react-redux-boilerplate",
+  "name": "redux-birthday-planner-workshop",
   "version": "1.0.0",
-  "description": "A minimal react-redux boilerplate with all the best practices",
+  "description": "A minimal redux app to plan your birthday guestlist",
   "repository": {
     "type": "git",
-    "url": "git://github.com/flexdinesh/react-redux-boilerplate.git"
+    "url": "git://github.com/msafa/redux-birthday-planner-workshop.git"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Dinesh Pandiyan",
+  "author": "Maedeh Safari",
   "license": "MIT",
   "scripts": {
     "prebuild": "npm run build:clean",
@@ -33,6 +33,7 @@
     "babel-polyfill": "6.26.0",
     "chalk": "^2.3.2",
     "compression": "1.7.2",
+    "connected-react-router": "4.5.0",
     "cross-env": "^5.1.6",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
@@ -41,7 +42,6 @@
     "invariant": "2.2.4",
     "pcln-design-system": "1.0.0-70",
     "ip": "1.1.5",
-    "lodash": "^4.17.10",
     "minimist": "1.2.0",
     "prop-types": "15.6.1",
     "react": "^16.4.0",
@@ -49,10 +49,11 @@
     "react-helmet": "5.2.0",
     "react-loadable": "^5.4.0",
     "react-redux": "5.0.7",
+    "redux-actions": "2.6.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.7.2",
-    "redux-saga": "0.16.0",
+    "redux-thunk": "2.3.0",
+    "redux-thunk-actions": "1.2.1",
     "reselect": "3.0.1",
     "styled-components": "2.4.0",
     "sanitize.css": "4.1.0",
