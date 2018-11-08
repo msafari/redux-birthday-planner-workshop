@@ -42,7 +42,7 @@ const Guest = ({
           disabled={alreadyDeclined}
           onClick={onRemove}
           name='close'
-          color={alreadyDeclined ? 'gray' : 'red'}
+          color={alreadyDeclined ? 'gray' : 'blue'}
           size={24}
         />
       </Box>
